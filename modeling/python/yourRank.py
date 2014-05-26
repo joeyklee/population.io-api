@@ -19,7 +19,7 @@ from scipy.interpolate import splrep, InterpolatedUnivariateSpline, interp1d
 #os.path.abspath(__file__)
 #folderpath = os.getcwd()
 
-inputData = 'WPP2012_INT_F3_Population_By_Sex_Annual_Single_100_Medium.csv'
+inputData = '../../data/WPP2012_INT_F3_Population_By_Sex_Annual_Single_100_Medium.csv'
 
 def main():
 
