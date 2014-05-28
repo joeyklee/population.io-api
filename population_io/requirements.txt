@@ -4,3 +4,7 @@ djangorestframework==2.3.13
 
 # Swagger integration
 django-rest-swagger==0.1.14
+
+# WSGI server for Heroku
+gunicorn==18.0
+dj-static==0.0.5
