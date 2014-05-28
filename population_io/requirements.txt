@@ -1,2 +1,6 @@
-# Django
+# Django and Django REST Framework
 django==1.6.5
+djangorestframework==2.3.13
+
+# Swagger integration
+django-rest-swagger==0.1.14
