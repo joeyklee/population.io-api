@@ -226,6 +226,57 @@ def main():
 
 	yourRANKbyAge('1993/12/06', 3650)
 	
+	''' --- function: my rank by date --- '''
+	# my rank by date: What will be my rank on particular day
+	def yourRANKbyDate(DoB, DATE):
+		DoB = datetime.strptime(DoB, date_format) 	# your date of birth
+		DATE = DATE 	# any input date
+		print DATE
+		iAge = numDate(datetime.strptime(DATE, '%Y-%m-%d')) - numDate(DoB) 
+		print iAge
+		X = dayInterpA(DATE) 
+		print X
+
+		# store age and pop in array
+		ageArray = np.asarray(X.AGE)
+		popArray = np.asarray(X.POP)
+
+		# calc cumulative sum of the population
+		cumSum =  np.cumsum(popArray)
+		print cumSum
+
+		# take the mean of the cumulative sum of the iAge year and preceeding
+		RANK = np.mean(np.extract((ageArray >= iAge -1) & (ageArray <= iAge), cumSum))
+		print RANK 
+
+	yourRANKbyDate('1993/12/06', '2001-09-11')
+
+	''' --- function: my rank today --- '''
+	# what is myrank today
+	def yourRANKToday(DoB):
+		DoB = datetime.strptime(DoB, date_format) 	# your date of birth
+
+		# get time now
+		now = datetime.now()
+		today = now.strftime('%Y-%m-%d')
+		iAge = numDate(datetime.strptime(today, '%Y-%m-%d')) - numDate(DoB)
+
+		# interpolate values for that day
+		X = dayInterpA(today)
+
+		# store age and pop in array
+		ageArray = np.asarray(X.AGE)
+		popArray = np.asarray(X.POP)
+
+		# calc cumulative sum of the population
+		cumSum =  np.cumsum(popArray)
+		print cumSum
+
+		# take the mean of the cumulative sum of the iAge year and preceeding
+		RANK = np.mean(np.extract((ageArray >= iAge -1) & (ageArray <= iAge), cumSum))
+		print RANK 
+
+	yourRANKToday('1993/12/06') 
 
 
 if __name__ == '__main__':
