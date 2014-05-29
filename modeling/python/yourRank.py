@@ -212,26 +212,17 @@ def main():
 		X = dayInterpA(DATE) # CHECK IF THIS CAN TAKE BOTH DATE AND NUMERIC FORMAT!!!
 		print X
 
+		# store age and pop in array
 		ageArray = np.asarray(X.AGE)
 		popArray = np.asarray(X.POP)
 
-		match1 = int(np.extract(ageArray == iAge, ageArray))
-		match2 = int(np.extract(ageArray == iAge-1, ageArray))
-
-		#index locations
-		match1i = ageArray.tolist().index(match1)
-		print match1i
-		match2i = ageArray.tolist().index(match2)
-		print match2i
-
-
+		# calc cumulative sum of the population
 		cumSum =  np.cumsum(popArray)
 		print cumSum
-		RANK = np.mean([cumSum[match1i], cumSum[match2i]])
-		print RANK
-		#print match1 
-		
-		# #print RANK
+
+		# take the mean of the cumulative sum of the iAge year and preceeding
+		RANK = np.mean(np.extract((ageArray >= iAge -1) & (ageArray <= iAge), cumSum))
+		print RANK 
 
 	yourRANKbyAge('1993/12/06', 3650)
 	
